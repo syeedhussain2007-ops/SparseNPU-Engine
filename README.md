@@ -398,7 +398,7 @@ Compression             : 3.27×
 
 🔌 API Architecture
 
-Method| Endpoint| Purpose
+Method| Endpoint| purpose
 POST| "/api/models/upload"| Upload model
 POST| "/api/optimize"| Run optimization
 POST| "/api/prune"| Apply pruning
