@@ -2,124 +2,54 @@
 
 SparQ-NPU follows a modular architecture that separates the user interface, optimization engine, compression layer, and NPU deployment pipeline.
 
-👤 User Layer
+flowchart TD
 
-👤 User
+    A[👤 User] --> B[🌐 Web Dashboard<br/>React + Vite]
 
-↓
+    B --> C[⚡ FastAPI Backend]
 
-🌐 Web Dashboard
-React + Vite
+    C --> D[🔍 Model Analyzer]
+    C --> E[🧠 AI Optimizer]
+    C --> F[📊 Benchmark Engine]
 
-↓
+    D --> G[✂️ Pruning Engine]
+    E --> G
 
-⚡ Backend Layer
+    G --> H[🧩 Sparse Weight Matrix]
 
-⚡ FastAPI Backend
+    H --> I[📈 Sparsity Analyzer]
+    I --> J[🔢 RLE Compressor]
 
-The FastAPI backend connects the frontend with:
+    J --> K[📦 NPU Packager]
 
-- 🔍 Model Analyzer
-- 🧠 AI Optimizer
-- 📊 Benchmark Engine
+    K --> L[🚀 Optimized NPU Model]
 
----
+    F --> M[📊 Performance Report]
 
-🔍 Model Analysis & Optimization Layer
-
-🔍 Model Analyzer
-+
-🧠 AI Optimizer
-
-↓
-
-✂️ Pruning Engine
-
-↓
-
-🧩 Sparse Weight Matrix
-
-↓
-
-📈 Sparsity Analyzer
-
-↓
-
-🔢 RLE Compressor
-
----
-
-📦 NPU Deployment Layer
-
-🔢 RLE Compressor
-
-↓
-
-📦 NPU Packager
-
-↓
-
-🚀 Optimized NPU Model
-
----
-
-📊 Benchmarking
-
-📊 Benchmark Engine
-
-↓
-
-📊 Performance Report
-
-↓
-
-🌐 Web Dashboard
-
-The optimized NPU model is also displayed through the Web Dashboard.
-
----
+    M --> B
+    L --> B
 
 🔄 Optimization Flow
 
 Model Upload
-
-↓
-
+     ↓
 Model Analysis
-
-↓
-
+     ↓
 Weight Importance Analysis
-
-↓
-
+     ↓
 AI-Guided Pruning
-
-↓
-
+     ↓
 Sparse Weight Representation
-
-↓
-
+     ↓
 Zero-Run Analysis
-
-↓
-
+     ↓
 Run-Length Encoding
-
-↓
-
+     ↓
 NPU Packaging
-
-↓
-
+     ↓
 Benchmarking
-
-↓
-
+     ↓
 Optimized Model
-
----
 
 🧩 Architecture Components
 
@@ -188,8 +118,6 @@ SparQ-NPU/
 ├── 📄 .gitignore
 └── 📄 README.md
 
----
-
 📂 Folder Explanation
 
 "frontend/"
@@ -204,8 +132,6 @@ frontend/
 │   └── services/       → API communication
 └── package.json        → Frontend dependencies
 
----
-
 "backend/"
 
 Contains the Python-based optimization backend.
@@ -218,8 +144,6 @@ backend/
 ├── benchmarks/         → Performance evaluation
 └── main.py             → FastAPI application entry point
 
----
-
 "algorithms/"
 
 This is the core of SparQ-NPU.
@@ -231,25 +155,17 @@ algorithms/
 ├── sparsity.py         → Sparsity calculation
 └── scoring.py          → NPU-readiness scoring
 
----
-
 "models/"
 
 Stores sample or test neural-network models used during development.
-
----
 
 "tests/"
 
 Contains unit and integration tests for validating the optimization pipeline.
 
----
-
 "docs/"
 
 Contains technical documentation, architecture explanations, and algorithm details.
-
----
 
 "demo/"
 
@@ -259,47 +175,33 @@ Contains files required for demonstrating the system during the hackathon.
 
 🔗 How the Project Structure Maps to the Architecture
 
-SPARQ-NPU
-
-FRONTEND
-
-React + Vite
-
-↓
-
-Dashboard
-
----
-
-BACKEND
-
-FastAPI
-
-The backend contains:
-
-- 🔍 Analyzer
-- 🧠 Optimizer
-- 📊 Benchmark
-
-Analyzer and Optimizer work together with the:
-
-"algorithms/"
-
-- "pruning.py"
-- "rle.py"
-- "sparsity.py"
-
-↓
-
-Optimized Model
-
-↓
-
-NPU Packager
-
-↓
-
-Edge NPU Target
+                     SPARQ-NPU
+                         │
+          ┌──────────────┴──────────────┐
+          │                             │
+      FRONTEND                       BACKEND
+          │                             │
+     React + Vite                  FastAPI
+          │                             │
+     Dashboard             ┌────────────┼────────────┐
+                           │            │            │
+                       Analyzer     Optimizer    Benchmark
+                           │            │
+                           └──────┬─────┘
+                                  │
+                           algorithms/
+                                  │
+                    ┌─────────────┼─────────────┐
+                    │             │             │
+                 pruning.py     rle.py      sparsity.py
+                    │             │             │
+                    └─────────────┼─────────────┘
+                                  │
+                           Optimized Model
+                                  │
+                           NPU Packager
+                                  │
+                            Edge NPU Target
 
 ---
 
@@ -317,29 +219,13 @@ The system examines the neural network and extracts:
 - Model size
 - Layer sensitivity
 
----
-
 2️⃣ Prune
 
 Low-importance weights are converted to zero.
 
-Weight
-
-↓
-
-Importance Analysis
-
-↓
-
-Threshold
-
-↓
-
-Zero / Keep
+Weight → Importance Analysis → Threshold → Zero / Keep
 
 This generates a sparse model.
-
----
 
 3️⃣ Compress
 
@@ -348,41 +234,33 @@ The system analyzes the generated zero patterns.
 If long consecutive zero runs are present, Run-Length Encoding (RLE) is applied.
 
 Sparse Weights
-
-↓
-
+      ↓
 Zero-Run Analysis
-
-↓
-
+      ↓
 RLE Compression
-
----
 
 4️⃣ Optimize & Benchmark
 
 The optimized model is evaluated against the original model.
 
 Original Model
-
-- Model Size
-- Parameters
-- Computation
-- Accuracy
-
-↓
-
-Optimization
-
-↓
-
+      │
+      ├── Model Size
+      ├── Parameters
+      ├── Computation
+      └── Accuracy
+              │
+              ▼
+       Optimization
+              │
+              ▼
 Optimized Model
-
-- Model Size
-- Sparsity
-- Compression Ratio
-- Active Weights
-- Accuracy Change
+      │
+      ├── Model Size
+      ├── Sparsity
+      ├── Compression Ratio
+      ├── Active Weights
+      └── Accuracy Change
 
 ---
 
@@ -390,7 +268,7 @@ Optimized Model
 
 SparQ-NPU follows a simple principle:
 
-««Do not optimize the model blindly. Analyze → Optimize → Measure → Validate.»»
+«Do not optimize the model blindly. Analyze → Optimize → Measure → Validate.»
 
 The goal is to achieve maximum model efficiency while maintaining acceptable accuracy and producing a representation suitable for efficient edge deployment.
 
@@ -398,36 +276,28 @@ The goal is to achieve maximum model efficiency while maintaining acceptable acc
 
 🚀 Future Architecture
 
-The architecture is designed to support additional optimization techniques in future versions.
+The architecture is designed to support additional optimization techniques in future versions:
 
-Neural Network
+flowchart LR
 
-↓
+    A[Neural Network] --> B[SparQ-NPU]
 
-SparQ-NPU
+    B --> C[Pruning]
+    B --> D[Quantization]
+    B --> E[Sparsity Optimization]
 
-The system can support:
+    C --> F[Compression]
+    D --> F
+    E --> F
 
-- Pruning
-- Quantization
-- Sparsity Optimization
+    F --> G[RLE]
+    F --> H[CSR]
+    F --> I[Block Sparse]
 
-These optimization techniques can be followed by:
+    G --> J[NPU Compiler]
+    H --> J
+    I --> J
 
-Compression
-
-The compression layer can support:
-
-- RLE
-- CSR
-- Block Sparse
-
-↓
-
-NPU Compiler
-
-↓
-
-Edge Device
+    J --> K[Edge Device]
 
 This allows SparQ-NPU to evolve from a pruning and compression engine into a complete edge-AI model optimization and deployment layer.
