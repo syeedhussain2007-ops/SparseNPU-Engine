@@ -1,616 +1,433 @@
-⚡ SparQ-NPU
-
-Sparse Weight Pruning and Run-Length Encoding Engine for Edge NPU
-
-«Making AI smaller, faster, and edge-ready.»
-
-SparQ-NPU is an intelligent model optimization engine designed to reduce the memory footprint and computational requirements of neural networks before deployment on resource-constrained Edge AI and NPU platforms.
-
-The system combines AI-guided weight pruning, sparse representation, Run-Length Encoding (RLE), and NPU-oriented performance analysis into a single optimization pipeline.
-
----
-
-🎯 Problem Statement
-
-Modern neural networks contain a large number of redundant or low-impact weights. Deploying these dense models on edge devices can lead to:
-
-- High memory consumption
-- Increased memory bandwidth requirements
-- Unnecessary computation
-- Higher energy consumption
-- Limited deployment capability on resource-constrained NPU devices
-
-Traditional model compression techniques often focus on a single optimization method.
-
-SparQ-NPU combines sparsity and compression to create a more hardware-aware optimization pipeline.
-
----
-
-💡 Our Solution
-
-SparQ-NPU transforms a dense neural network into a compact sparse representation through the following pipeline:
-
-Dense Neural Network
-        ↓
-Model Analysis
-        ↓
-Weight Importance Analysis
-        ↓
-Intelligent Pruning
-        ↓
-Sparse Representation
-        ↓
-Zero-Run Analysis
-        ↓
-Run-Length Encoding
-        ↓
-NPU-Aware Optimization
-        ↓
-Benchmark & Analysis
-        ↓
-NPU-Ready Model
-
-The system identifies low-impact weights, creates sparsity, analyzes zero patterns, and applies RLE when the resulting structure provides a compression advantage.
-
----
-
-🚀 Key Features
-
-🧠 Intelligent Weight Pruning
-
-Identifies low-magnitude or low-impact weights and removes unnecessary parameters.
-
-📊 Layer-Wise Sparsity Analysis
-
-Analyzes each neural-network layer independently to determine its sparsity and compression potential.
-
-🔢 Run-Length Encoding
-
-Compresses consecutive zero values created by pruning into compact run-length representations.
-
-🤖 AI Optimization Advisor
-
-Recommends pruning and encoding configurations based on model characteristics.
-
-⚡ NPU Readiness Score
-
-Provides an optimization score based on factors such as:
-
-- Sparsity
-- Compression ratio
-- Memory reduction
-- Computational reduction
-- Zero-run characteristics
-
-📈 Before vs After Benchmarking
-
-Provides a visual comparison between the original and optimized model.
-
-👁️ Interactive Weight Visualization
-
-Visualizes the transformation from dense weights to a sparse representation.
-
-📦 NPU Export Pipeline
-
-Designed to generate a compact representation suitable for integration with future NPU-specific deployment pipelines.
-
----
-
-🔥 Innovation
-
-SparQ-NPU is not simply a pruning algorithm.
-
-Its key innovation is the combination of:
-
-        PRUNING
-           +
-    SPARSE ANALYSIS
-           +
-          RLE
-           +
-  HARDWARE-AWARE SCORING
-           +
-     AI RECOMMENDATION
-
-Instead of blindly applying compression, the system analyzes whether the generated sparsity pattern is actually beneficial for compact storage.
-
----
-
-🧠 AI Optimization Strategy
-
-The optimization objective can be represented conceptually as:
-
-Maximize:
-
-Compression Efficiency
-        +
-Sparsity
-        +
-Hardware Efficiency
-
-Subject to:
-
-Accuracy Loss < Acceptable Threshold
-
-Different layers can receive different pruning strategies depending on their sensitivity.
-
-Example:
-
-Layer             Recommended Sparsity
-
-Conv1             40%
-Conv2             60%
-Conv3             45%
-Conv4             75%
-
-This prevents the system from treating every layer identically.
-
----
-
-🔢 Run-Length Encoding
-
-After pruning, neural-network weights may contain long sequences of zeros.
-
-Example:
-
-Original:
-
-0 0 0 0 0 0 0 0 0.81 0 0 0 0.37
-
-Instead of storing every zero individually:
-
-RLE:
-
-(8, 0.81)
-(3, 0.37)
-
-The exact representation used by the implementation can be adapted to the target NPU memory format.
-
----
-
-📊 Optimization Metrics
-
-SparQ-NPU tracks several important metrics:
-
-Metric| Description
-Sparsity| Percentage of weights removed
-Compression Ratio| Original size / compressed size
-Memory Reduction| Reduction in model storage
-Active Weights| Remaining non-zero parameters
-Accuracy Loss| Change in model accuracy
-Zero-Run Density| Distribution of consecutive zeros
-NPU Score| Hardware-oriented optimization indicator
-
----
-
 🏗️ System Architecture
 
-┌─────────────────────────────┐
-│       Web Dashboard         │
-│       React + Vite          │
-└──────────────┬──────────────┘
-               │
-               ▼
-┌─────────────────────────────┐
-│        FastAPI Backend      │
-└──────────────┬──────────────┘
-               │
-       ┌───────┼────────┐
-       ▼       ▼        ▼
-   Analyzer  Optimizer  Benchmark
-       │       │        │
-       └───────┼────────┘
-               ▼
-       ┌─────────────────┐
-       │ Pruning Engine  │
-       └────────┬────────┘
-                ▼
-       ┌─────────────────┐
-       │ Sparse Matrix   │
-       └────────┬────────┘
-                ▼
-       ┌─────────────────┐
-       │ RLE Compressor  │
-       └────────┬────────┘
-                ▼
-       ┌─────────────────┐
-       │ NPU Packager    │
-       └────────┬────────┘
-                ▼
-       Optimized Model
+SparQ-NPU follows a modular architecture that separates the user interface, optimization engine, compression layer, and NPU deployment pipeline.
+
+👤 User Layer
+
+👤 User
+
+↓
+
+🌐 Web Dashboard
+React + Vite
+
+↓
+
+⚡ Backend Layer
+
+⚡ FastAPI Backend
+
+The FastAPI backend connects the frontend with:
+
+- 🔍 Model Analyzer
+- 🧠 AI Optimizer
+- 📊 Benchmark Engine
 
 ---
 
-🛠️ Technology Stack
+🔍 Model Analysis & Optimization Layer
 
-Frontend
+🔍 Model Analyzer
++
+🧠 AI Optimizer
 
-- React
-- Vite
-- Tailwind CSS
-- Recharts
-- Framer Motion
-- Lucide Icons
+↓
 
-Backend
+✂️ Pruning Engine
 
-- Python
-- FastAPI
-- Uvicorn
+↓
 
-Machine Learning
+🧩 Sparse Weight Matrix
 
-- PyTorch
-- NumPy
-- ONNX
-- ONNX Runtime
+↓
 
-Optimization
+📈 Sparsity Analyzer
 
-- Magnitude Pruning
-- Structured Sparsity
-- Sparse Matrix Representation
-- Run-Length Encoding
+↓
 
-Database
+🔢 RLE Compressor
 
-- SQLite for development
-- PostgreSQL for production
+---
 
-Deployment
+📦 NPU Deployment Layer
 
-- Vercel
-- Render / Railway
-- GitHub
+🔢 RLE Compressor
+
+↓
+
+📦 NPU Packager
+
+↓
+
+🚀 Optimized NPU Model
+
+---
+
+📊 Benchmarking
+
+📊 Benchmark Engine
+
+↓
+
+📊 Performance Report
+
+↓
+
+🌐 Web Dashboard
+
+The optimized NPU model is also displayed through the Web Dashboard.
+
+---
+
+🔄 Optimization Flow
+
+Model Upload
+
+↓
+
+Model Analysis
+
+↓
+
+Weight Importance Analysis
+
+↓
+
+AI-Guided Pruning
+
+↓
+
+Sparse Weight Representation
+
+↓
+
+Zero-Run Analysis
+
+↓
+
+Run-Length Encoding
+
+↓
+
+NPU Packaging
+
+↓
+
+Benchmarking
+
+↓
+
+Optimized Model
+
+---
+
+🧩 Architecture Components
+
+Component| Responsibility
+Web Dashboard| Upload models and visualize optimization
+FastAPI Backend| Connects the frontend with the optimization engine
+Model Analyzer| Extracts model and layer-level information
+AI Optimizer| Recommends pruning and compression strategies
+Pruning Engine| Removes low-importance weights
+Sparse Matrix| Stores the resulting sparse representation
+Sparsity Analyzer| Measures zero-weight distribution
+RLE Compressor| Compresses consecutive zero runs
+Benchmark Engine| Compares original and optimized models
+NPU Packager| Generates the optimized deployment representation
 
 ---
 
 📁 Project Structure
 
-sparq-npu/
+The project is organized into separate modules so that the frontend, backend, optimization algorithms, testing, and documentation can be developed independently.
+
+SparQ-NPU/
 │
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── charts/
-│   │   └── services/
-│   └── package.json
+├── 📁 frontend/
+│   │
+│   ├── 📁 src/
+│   │   ├── 📁 components/
+│   │   ├── 📁 pages/
+│   │   ├── 📁 charts/
+│   │   └── 📁 services/
+│   │
+│   └── 📄 package.json
 │
-├── backend/
-│   ├── api/
-│   ├── models/
-│   ├── services/
-│   ├── algorithms/
-│   │   ├── pruning.py
-│   │   ├── rle.py
-│   │   ├── sparsity.py
-│   │   └── scoring.py
-│   ├── benchmarks/
-│   └── main.py
+├── 📁 backend/
+│   │
+│   ├── 📁 api/
+│   ├── 📁 models/
+│   ├── 📁 services/
+│   │
+│   ├── 📁 algorithms/
+│   │   ├── 📄 pruning.py
+│   │   ├── 📄 rle.py
+│   │   ├── 📄 sparsity.py
+│   │   └── 📄 scoring.py
+│   │
+│   ├── 📁 benchmarks/
+│   └── 📄 main.py
 │
-├── models/
+├── 📁 models/
+│   └── 📄 sample_model/
 │
-├── tests/
+├── 📁 tests/
+│   ├── 📄 test_pruning.py
+│   ├── 📄 test_rle.py
+│   └── 📄 test_sparsity.py
 │
-├── docs/
+├── 📁 docs/
+│   ├── 📄 architecture.md
+│   └── 📄 algorithms.md
 │
-├── demo/
+├── 📁 demo/
+│   └── 📄 demo_model/
 │
-├── requirements.txt
-├── Dockerfile
-└── README.md
+├── 📄 requirements.txt
+├── 📄 Dockerfile
+├── 📄 .gitignore
+└── 📄 README.md
 
 ---
 
-⚙️ Core Algorithms
+📂 Folder Explanation
 
-1. Weight Pruning
+"frontend/"
 
-Weights below a selected importance threshold are converted to zero.
+Contains the complete web interface.
 
-if |weight| < threshold:
-    weight = 0
-
-The resulting zero weights create sparsity.
-
----
-
-2. Sparsity Calculation
-
-Sparsity (%) =
-(Number of Zero Weights / Total Number of Weights) × 100
+frontend/
+├── src/
+│   ├── components/     → Reusable UI components
+│   ├── pages/          → Dashboard and application pages
+│   ├── charts/         → Performance visualizations
+│   └── services/       → API communication
+└── package.json        → Frontend dependencies
 
 ---
 
-3. Compression Ratio
+"backend/"
 
-Compression Ratio =
-Original Model Size / Compressed Model Size
+Contains the Python-based optimization backend.
 
-Higher compression ratio indicates better storage efficiency.
-
----
-
-4. RLE
-
-The sparse weight stream is analyzed for consecutive zero runs.
-
-Weight Stream
-      ↓
-Zero Detection
-      ↓
-Run Formation
-      ↓
-Encoded Representation
+backend/
+├── api/                → REST API endpoints
+├── models/             → Model loading and processing
+├── services/           → Backend services
+├── algorithms/         → Core optimization algorithms
+├── benchmarks/         → Performance evaluation
+└── main.py             → FastAPI application entry point
 
 ---
 
-🖥️ Dashboard
+"algorithms/"
 
-The SparQ-NPU dashboard provides:
+This is the core of SparQ-NPU.
 
-Model Overview
-
-Sparsity
-72.4%
-
-Model Size
-4.82 MB → 1.47 MB
-
-Memory Reduction
-69.5%
-
-NPU Score
-91/100
-
-Optimization Visualization
-
-The dashboard visually demonstrates:
-
-Dense Model
-     ↓
-Pruned Model
-     ↓
-Sparse Representation
-     ↓
-RLE Compressed Model
+algorithms/
+│
+├── pruning.py          → Weight pruning
+├── rle.py              → Run-Length Encoding
+├── sparsity.py         → Sparsity calculation
+└── scoring.py          → NPU-readiness scoring
 
 ---
 
-📈 Example Optimization Flow
+"models/"
 
-A demonstration model can produce an optimization report such as:
-
-Original Model Size     : 4.82 MB
-Optimized Model Size    : 1.47 MB
-
-Sparsity                : 72.4%
-Memory Reduction        : 69.5%
-Active Weights          : 27.6%
-Compression             : 3.27×
-
-«Note: These values are demonstration targets for the prototype. Actual results depend on the neural-network architecture, pruning strategy, encoding format, and target NPU hardware.»
+Stores sample or test neural-network models used during development.
 
 ---
 
-🔌 API Architecture
+"tests/"
 
-Method| Endpoint| Purpose
-POST| "/api/models/upload"| Upload model
-POST| "/api/optimize"| Run optimization
-POST| "/api/prune"| Apply pruning
-POST| "/api/rle/encode"| Generate RLE representation
-GET| "/api/models/{id}"| Model information
-GET| "/api/models/{id}/metrics"| Optimization metrics
-GET| "/api/models/{id}/layers"| Layer analysis
-GET| "/api/benchmark/{id}"| Benchmark results
-GET| "/api/recommendations/{id}"| AI recommendations
-POST| "/api/export"| Export optimized model
+Contains unit and integration tests for validating the optimization pipeline.
 
 ---
 
-🧪 Testing & Validation
+"docs/"
 
-The system should validate:
+Contains technical documentation, architecture explanations, and algorithm details.
 
-- Model loading
-- Weight extraction
-- Pruning correctness
-- Sparsity calculation
-- RLE encoding/decoding
-- Compression ratio
-- Model output consistency
-- Accuracy before/after pruning
-- Export correctness
+---
 
-A critical validation step is:
+"demo/"
 
-Original Model
-      ↓
-Inference
-      ↓
-Accuracy₁
+Contains files required for demonstrating the system during the hackathon.
+
+---
+
+🔗 How the Project Structure Maps to the Architecture
+
+SPARQ-NPU
+
+FRONTEND
+
+React + Vite
+
+↓
+
+Dashboard
+
+---
+
+BACKEND
+
+FastAPI
+
+The backend contains:
+
+- 🔍 Analyzer
+- 🧠 Optimizer
+- 📊 Benchmark
+
+Analyzer and Optimizer work together with the:
+
+"algorithms/"
+
+- "pruning.py"
+- "rle.py"
+- "sparsity.py"
+
+↓
 
 Optimized Model
-      ↓
-Inference
-      ↓
-Accuracy₂
 
-Compare Accuracy₁ vs Accuracy₂
+↓
 
----
+NPU Packager
 
-🌍 Real-World Applications
+↓
 
-SparQ-NPU can be applied to:
-
-- 📱 Smartphones
-- 🚗 Autonomous vehicles
-- 📷 Smart cameras
-- 🏥 Edge healthcare devices
-- 🏭 Industrial IoT
-- 🛰️ Remote sensing
-- 🤖 Robotics
-- 🏠 Smart-home devices
-- 📡 Edge communication systems
+Edge NPU Target
 
 ---
 
-🔮 Future Scope
+🧠 Core Optimization Pipeline
 
-Hardware-Specific Optimization
+SparQ-NPU consists of four major stages:
 
-Support optimization profiles for different NPU architectures.
+1️⃣ Analyze
 
-Quantization
+The system examines the neural network and extracts:
 
-Combine:
+- Number of parameters
+- Weight distribution
+- Layer structure
+- Model size
+- Layer sensitivity
 
-Pruning + RLE + INT8 Quantization
+---
 
-for additional compression.
+2️⃣ Prune
 
-Adaptive Compression
+Low-importance weights are converted to zero.
 
-Automatically choose between:
+Weight
 
-Dense
-RLE
-CSR
-CSC
-Block Sparse
+↓
 
-depending on the sparsity pattern.
+Importance Analysis
 
-Hardware Benchmarking
+↓
 
-Run optimized models directly on supported edge hardware and collect:
+Threshold
 
-- Latency
-- Power
-- Memory bandwidth
-- Throughput
-- Energy per inference
+↓
 
-Automated Model Compiler
+Zero / Keep
 
-Future versions can transform:
+This generates a sparse model.
 
-PyTorch / TensorFlow
-        ↓
+---
+
+3️⃣ Compress
+
+The system analyzes the generated zero patterns.
+
+If long consecutive zero runs are present, Run-Length Encoding (RLE) is applied.
+
+Sparse Weights
+
+↓
+
+Zero-Run Analysis
+
+↓
+
+RLE Compression
+
+---
+
+4️⃣ Optimize & Benchmark
+
+The optimized model is evaluated against the original model.
+
+Original Model
+
+- Model Size
+- Parameters
+- Computation
+- Accuracy
+
+↓
+
+Optimization
+
+↓
+
+Optimized Model
+
+- Model Size
+- Sparsity
+- Compression Ratio
+- Active Weights
+- Accuracy Change
+
+---
+
+🎯 Design Philosophy
+
+SparQ-NPU follows a simple principle:
+
+««Do not optimize the model blindly. Analyze → Optimize → Measure → Validate.»»
+
+The goal is to achieve maximum model efficiency while maintaining acceptable accuracy and producing a representation suitable for efficient edge deployment.
+
+---
+
+🚀 Future Architecture
+
+The architecture is designed to support additional optimization techniques in future versions.
+
+Neural Network
+
+↓
+
 SparQ-NPU
-        ↓
-Optimized NPU Package
 
----
+The system can support:
 
-🎯 Why SparQ-NPU Matters
+- Pruning
+- Quantization
+- Sparsity Optimization
 
-Edge AI requires models that are not only accurate, but also efficient.
+These optimization techniques can be followed by:
 
-SparQ-NPU focuses on the gap between AI model development and efficient edge deployment.
+Compression
 
-Our objective is to create an optimization layer that allows developers to take an existing neural network and automatically determine:
+The compression layer can support:
 
-«What can be removed? What can be compressed? And what representation is most suitable for edge deployment?»
+- RLE
+- CSR
+- Block Sparse
 
----
+↓
 
-🏆 Hackathon Value Proposition
+NPU Compiler
 
-Traditional Approach
+↓
 
-Train Model
-    ↓
-Deploy Model
+Edge Device
 
-SparQ-NPU
-
-Train Model
-    ↓
-Analyze
-    ↓
-Optimize
-    ↓
-Prune
-    ↓
-Compress
-    ↓
-Benchmark
-    ↓
-NPU-Ready Deployment
-
-This transforms model compression from a manual process into an automated optimization workflow.
-
----
-
-🚀 Getting Started
-
-Clone Repository
-
-git clone https://github.com/YOUR_USERNAME/sparq-npu.git
-cd sparq-npu
-
-Backend
-
-cd backend
-
-python -m venv venv
-
-# Windows
-venv\Scripts\activate
-
-# Linux / macOS
-source venv/bin/activate
-
-pip install -r requirements.txt
-
-uvicorn main:app --reload
-
-Frontend
-
-cd frontend
-
-npm install
-
-npm run dev
-
-Open the local frontend URL displayed by Vite.
-
----
-
-📦 Demo
-
-The project includes an interactive demonstration of:
-
-- Weight-matrix visualization
-- Magnitude pruning
-- RLE encoding
-- Compression analysis
-- NPU-readiness scoring
-- Before/after comparison
-
----
-
-👥 Team
-
-SparQ-NPU Team
-
-«Building efficient AI for the edge.»
-
----
-
-📜 License
-
-This project is developed as a hackathon prototype and can be adapted for future research and development.
-
----
-
-⭐ Vision
-
-«SparQ-NPU — From Dense Intelligence to Efficient Edge Intelligence.»
-
-Measure → Analyze → Prune → Compress → Optimize → Benchmark → DeployFor your GitHub right now: create README.md in the repository and paste this entire content.
-
+This allows SparQ-NPU to evolve from a pruning and compression engine into a complete edge-AI model optimization and deployment layer.
