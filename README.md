@@ -26,9 +26,8 @@ The actual Python implementation remains the source of truth.
 
 If I upload the Python files, JSON result files, README, or other project files, use them to understand the project structure and terminology. Do not invent technical functionality that is not present in those files.
 
-==================================================
+
 PROJECT PIPELINE
-==================================================
 
 The complete system works as:
 
@@ -44,9 +43,9 @@ BENCHMARK VERIFICATION
 
 The goal is to demonstrate that neural-network representations can be optimized by removing unnecessary weights, efficiently representing sparse data, and verifying that inference outputs remain correct.
 
-==================================================
+
 ACTUAL PROJECT FILE STRUCTURE
-==================================================
+
 
 The Python project is organized as:
 
@@ -77,9 +76,9 @@ SparseNPU-Engine/
 
 Use this structure in the Project Architecture section.
 
-==================================================
+
 VERIFIED RESULTS
-==================================================
+
 
 Only use the following verified values from our actual Python execution.
 
@@ -163,9 +162,9 @@ Do NOT invent:
 - additional memory reduction
 - benchmark scores
 
-==================================================
+
 DESIGN REQUIREMENTS
-==================================================
+
 
 Build a premium technical AI/Edge-AI dashboard.
 
@@ -199,9 +198,8 @@ Do not use excessive neon effects or unnecessary decoration.
 
 Prioritize clarity and technical credibility.
 
-==================================================
 MAIN NAVIGATION
-==================================================
+
 
 Create these sections:
 
@@ -215,9 +213,8 @@ Create these sections:
 8. Project Architecture
 9. Demo Mode
 
-==================================================
 PAGE 1 — OVERVIEW
-==================================================
+
 
 Create a strong hero section.
 
@@ -279,9 +276,8 @@ Each stage should show:
 - Short description
 - Completed status
 
-==================================================
 PAGE 2 — PIPELINE
-==================================================
+
 
 Create a large visual workflow.
 
@@ -389,9 +385,8 @@ RLE Output:
 Final Status:
 ✓ SUCCESS
 
-==================================================
 PAGE 3 — BASELINE
-==================================================
+
 
 Title:
 
@@ -426,9 +421,8 @@ Create a small baseline visualization.
 
 Do not invent accuracy values.
 
-==================================================
 PAGE 4 — PRUNING
-==================================================
+
 
 Title:
 
@@ -480,9 +474,9 @@ pruned_mlp.pth
 Result:
 pruning.json
 
-==================================================
+
 PAGE 5 — RLE COMPRESSION
-==================================================
+
 
 Title:
 
@@ -535,9 +529,9 @@ IMPORTANT WORDING:
 
 Do NOT describe this as total system memory reduction.
 
-==================================================
+
 PAGE 6 — SPARSE INFERENCE
-==================================================
+
 
 Title:
 
@@ -596,9 +590,9 @@ Label it:
 
 "Prototype Benchmark Visualization"
 
-==================================================
+
 PAGE 7 — FINAL BENCHMARK
-==================================================
+
 
 Make this the strongest page for the judges.
 
@@ -644,9 +638,9 @@ Create charts for:
 
 Charts should be clean and easy to understand.
 
-==================================================
+
 PAGE 8 — PROJECT ARCHITECTURE
-==================================================
+
 
 Create a professional software architecture visualization.
 
@@ -709,9 +703,8 @@ README.md
 
 Make this look like professional system architecture documentation.
 
-==================================================
 PAGE 9 — DEMO MODE
-==================================================
+
 
 Create a special "Hackathon Demo" mode.
 
@@ -771,9 +764,8 @@ Exit Demo
 
 Keep the demo visually simple and presentation-friendly.
 
-==================================================
 TEAM CONTRIBUTION SECTION
-==================================================
+
 
 Create a section showing the four-member workflow.
 
@@ -795,9 +787,9 @@ Do not invent people's names.
 
 Use "Member 1", "Member 2", "Member 3", and "Member 4".
 
-==================================================
+
 TECHNICAL EXPLANATION
-==================================================
+
 
 Include a section called:
 
@@ -813,9 +805,8 @@ Explain in simple technical language:
 
 Keep the explanation understandable to both technical and non-technical judges.
 
-==================================================
 IMPORTANT TECHNICAL DISCLAIMER
-==================================================
+
 
 Add a small technical note:
 
@@ -823,9 +814,8 @@ Add a small technical note:
 
 This must be visible in the technical/project information section.
 
-==================================================
 INTERACTION REQUIREMENTS
-==================================================
+
 
 Add:
 
@@ -841,9 +831,9 @@ Add:
 
 Keep animations subtle and professional.
 
-==================================================
+
 FINAL GOAL
-==================================================
+
 
 The final website should allow a hackathon judge to understand the entire project within approximately 30 seconds.
 
