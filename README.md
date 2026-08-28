@@ -1,7 +1,7 @@
-/*Smaple Prototype*\
+Smaple Prototype.
 https://sparsenpu-engine-das-th64.bolt.host
 
-# SparseNPU-Engine
+SparseNPU-Engine
 
 TAGLINE:
 "Efficient Neural Network Inference Through Pruning, Compression and Sparse Execution"
