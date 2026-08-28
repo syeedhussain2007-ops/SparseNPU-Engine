@@ -1,0 +1,9 @@
+{
+    "original_parameters": 17226,
+    "total_weights": 17024,
+    "zero_weights": 10214,
+    "sparsity": 0.5999765037593985,
+    "pruning_percentage": 59.99765037593985,
+    "remaining_weight_percentage": 40.00234962406015,
+    "pruning_ratio": 0.5999765037593985
+}
