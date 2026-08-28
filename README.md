@@ -1,4 +1,4 @@
-Create a professional, hackathon-ready web prototype for my project:
+
 
 # SparseNPU-Engine
 
